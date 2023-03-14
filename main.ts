@@ -1,6 +1,22 @@
 input.onButtonPressed(Button.A, function () {
     if (sprite.get(LedSpriteProperty.X) == 2 && sprite.get(LedSpriteProperty.Y) == 2) {
         game.addScore(1)
+        Number2 = randint(1, 4)
+        if (Number2 == 1) {
+            sprite.turn(Direction.Right, 90)
+        } else {
+            if (Number2 == 2) {
+                sprite.turn(Direction.Right, 180)
+            } else {
+                if (Number2 == 3) {
+                    sprite.turn(Direction.Right, 270)
+                } else {
+                    if (Number2 == 4) {
+                        sprite.turn(Direction.Right, 360)
+                    }
+                }
+            }
+        }
     } else {
         game.removeLife(1)
         if (game.isGameOver()) {
@@ -9,9 +25,10 @@ input.onButtonPressed(Button.A, function () {
         }
     }
 })
+let Number2 = 0
 let sprite: game.LedSprite = null
 sprite = game.createSprite(2, 2)
-game.setLife(3)
+game.setLife(5)
 basic.forever(function () {
     sprite.move(1)
     sprite.ifOnEdgeBounce()
@@ -43,4 +60,7 @@ basic.forever(function () {
             }
         }
     }
+})
+control.inBackground(function () {
+    music.playMelody("C D E F G A B C5 ", 120)
 })
